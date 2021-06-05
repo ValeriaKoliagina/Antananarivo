@@ -1,41 +1,139 @@
 class CardWidget {
     template = '';
     style = '';
+    formIDs = {};
+    errorMessages = {};
 
-    constructor (selector) {
+    constructor(selector) {
         this.template = '';
         this.style = '';
+
+        this.formIDs = {
+            form: 'cardForm',
+            number: 'cardNumber',
+            owner: 'owner',
+            cvv: 'cvv',
+            errorNumber: 'error-cardNumber',
+            errorOwner: 'error-owner',
+            errorCvv: 'error-cvv',
+            submit: 'confirm-purchase',
+            
+        };
+
+        this.errorMessages = {
+            errorNumber: 'Incorrect card number',
+            errorOwner: 'Incorrect holder\'s name',
+            errorCvv: 'Incorrect CVV number'
+            
+        };
 
         let element = document.querySelector(selector);
         if (element) {
             document.head.insertAdjacentHTML("beforeend", this.style); // добавляем стиль
             element.innerHTML = this.template; // вставляем виджет
         } else {
-            throw new Error ('There is no such element in document');
+            throw new Error('There is no such element in document');
         }
 
     }
 
     validateCardNumber(cn) {
-    
+
         const cardnumber = cn.replace(/[ -]/g, '');
-    
+
         const match = /^(?:(4[0-9]{12}(?:[0-9]{3})?)|(5[1-5][0-9]{14})|(6(?:011|5[0-9]{2})[0-9]{12})|(3[47][0-9]{13})|(3(?:0[0-5]|[68][0-9])[0-9]{11})|((?:2131|1800|35[0-9]{3})[0-9]{11}))$/.exec(cardnumber);
-      
+
         if (match) {
-         
-          const types = ['Visa', 'MasterCard', 'Discover', 'American Express',
-                       'Diners Club', 'JCB'];
-          
-          for (let i = 1; i < match.length; i++) {
-            if (match[i]) {
-              return types[i - 1];
+
+            const types = ['Visa', 'MasterCard', 'Discover', 'American Express',
+                'Diners Club', 'JCB'];
+
+            for (let i = 1; i < match.length; i++) {
+                if (match[i]) {
+                    return types[i - 1];
+                }
             }
-          }
         } else {
-          return '(invalid card number)';
+            return false;
         }
-    
+
+    }
+
+    validateCardHolderName(hn) {
+
+        const holdername = hn.replace(/[ -]/g, '');
+
+        const match = /^([A-Za-z]{3,})\s([A-Za-z]{3,})$/.exec(holdername);
+
+        if (match) {
+            return true
+        } else {
+            return false;
+        }
+
+    }
+
+    validateCVV(number) {
+
+        const cvv = number.replace(/[ -]/g, '');
+
+        const match = /^[0-9]{3,4}$/.exec(cvv);
+
+        if (match) {
+            return true
+        } else {
+            return false;
+        }
+
+    }
+
+    showError(selector, message) {
+        let element = document.querySelector(selector);
+        if (element) {
+            element.textContent = message;
+        } else {
+            throw new Error('There is no such element in document');
+        }
+    }
+
+    validateAll() {
+        const cardNumber = document.querySelector(this.formIDs.cardNumber);
+        if(cardNumber) {
+            if(!this.validateCardNumber(cardNumber.value)) {
+                this.showError(this.formIDs.errorNumber, this.errorMessages.errorNumber);
+                return false;
+            } 
+        }
+
+        const owner = document.querySelector(this.formIDs.owner);
+        if(owner) {
+            if(!this.validateCardNumber(owner.value)) {
+                this.showError(this.formIDs.errorOwner, this.errorMessages.errorOwner);
+                return false;
+            } 
+        }
+
+        const cvv = document.querySelector(this.formIDs.cvv);
+        if(cvv) {
+            if(!this.validateCardNumber(cvv.value)) {
+                this.showError(this.formIDs.errorCvv, this.errorMessages.errorCvv);
+                return false;
+            } 
+        }
+
+        return true;
+    }
+
+    addEvents() {
+        const submit = document.querySelector(this.formIDs.submit);
+        if(submit) {
+            submit.addEventListener('submit', (ev) => {
+                ev.preventDefault();
+                if(this.validateAll()) {
+                    ev.target.submit();
+                }
+            });
+        }
     }
 
 }
