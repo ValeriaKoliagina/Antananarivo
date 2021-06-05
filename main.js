@@ -1,4 +1,4 @@
-class CardWidger {
+class CardWidget {
     template = '';
     style = '';
 
