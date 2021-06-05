@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Card</title>
+  </head>
+  <body>
+    <div id='app'>
+
+    <form class='form' id='form'>
+      <div class='form-name'>
+        <label for='name'>Name</label>
+        <div class='input-flex'>
+          <input type='text' class='form-input' id='name' placeholder='Enter your name'>
+          <span class='error' id='name-error'></span>
+      </div>
+      </div>
+
+      <div class='form-number'>
+        <label for='number'>Card Number</label>
+        <div class='input-flex'>
+          <input type='text' class='form-input' id='number' placeholder='1234 5678 1234 5678'>
+          <span class='error' id='number-error'></span>
+      </div>
+      </div>
+
+      <div class='form-CVV'>
+          <label for='cvv'>CVV</label>
+          <div class='input-flex'>
+            <input type='text' class='form-input' id='cvv' placeholder='Enter your secret code here'>
+            <span class='error' id='cvv-error'></span>
+          </div>
+      </div>
+      
+      <div class='form-group' id='date'>
+          <label>Expiration Date</label>
+          <div class='form-selects'>
+            <select>
+                <option value='01'>January</option>
+                <option value='02'>February </option>
+                <option value='03'>March</option>
+                <option value='04'>April</option>
+                <option value='05'>May</option>
+                <option value='06'>June</option>
+                <option value='07'>July</option>
+                <option value='08'>August</option>
+                <option value='09'>September</option>
+                <option value='10'>October</option>
+                <option value='11'>November</option>
+                <option value='12'>December</option>
+            </select>
+            <select>
+                <option value='21'> 2021</option>
+                <option value='22'> 2022</option>
+                <option value='23'> 2023</option>
+                <option value='24'> 2024</option>
+                <option value='25'> 2025</option>
+                <option value='26'> 2026</option>
+            </select>
+        </div>
+      </div>
+
+      <div class='form-button'>
+          <button type='submit' class='button-submit' id='submit'>Confirm</button>
+      </div>
+    </form>
+  </div>
+    <script src='./index.js'></script>
+  </body>
+</html>
