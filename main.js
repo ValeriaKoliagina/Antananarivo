@@ -1,6 +1,6 @@
 class CardWidget {
-    template = '';
-    style = '';
+    template = "<div id='app'> <form class='form' id='form'> <div class='form-name'> <label for='name'>Name</label> <div class='input-flex'> <input type='text' class='form-input' id='name' placeholder='Enter your name'> <span class='error' id='name-error'></span> </div></div><div class='form-number'> <label for='number'>Card Number</label> <div class='input-flex'> <input type='text' class='form-input' id='number' placeholder='1234 5678 1234 5678'> <span class='error' id='number-error'></span> </div></div><div class='form-CVV'> <label for='cvv'>CVV</label> <div class='input-flex'> <input type='text' class='form-input' id='cvv' placeholder='Enter your secret code here'> <span class='error' id='cvv-error'></span> </div></div><div class='form-group' id='date'> <label>Expiration Date</label> <div class='form-selects'> <select> <option value='01'>January</option> <option value='02'>February </option> <option value='03'>March</option> <option value='04'>April</option> <option value='05'>May</option> <option value='06'>June</option> <option value='07'>July</option> <option value='08'>August</option> <option value='09'>September</option> <option value='10'>October</option> <option value='11'>November</option> <option value='12'>December</option> </select> <select> <option value='21'> 2021</option> <option value='22'> 2022</option> <option value='23'> 2023</option> <option value='24'> 2024</option> <option value='25'> 2025</option> <option value='26'> 2026</option> </select> </div></div><div class='form-button'> <button type='submit' class='button-submit' id='submit'>Confirm</button> </div></form> </div>";
+    style = "#app{max-width: 500px; background-color: #fff; margin: 10px auto; overflow: hidden; padding: 25px; color: #4c4e56;}#app form{font-size: 18px; padding: 10px 25px; margin-top: 20px; position: relative;}#app form label{width: 100%; margin-bottom: 10px; margin-right: 10px;}#app form div{margin-bottom: 5px;}#app form .form-input{line-height: 30px; height: auto; padding: 0 16px; border-radius: 5px;}#app .name{width: 63%; margin-right: 10px;}#app .CVV{width: 35%;}#app .form-number{width: 100%;}#app .form-group{display: flex; flex-direction: column;}#app .form-group .form-selects{display: flex;}#app .form-button{width: 100%; margin-top: 25px;}#app .form-button button{width: 100%; margin-top: 3px; font-size: 24px; background-color: #2ec4a5; color: white; border-radius: 5px;}#app select{padding: 10px; margin-right: 15px; border-radius: 5px; font-size: 16px;}#app .input-flex{display: flex; flex-direction: column;}#app .error{color: red; height: 14px; font-size: 14px;}";
     formIDs = {};
     errorMessages = {};
 
@@ -9,15 +9,14 @@ class CardWidget {
         this.style = '';
 
         this.formIDs = {
-            form: 'cardForm',
-            number: 'cardNumber',
-            owner: 'owner',
+            form: 'form',
+            number: 'number',
+            owner: 'name',
             cvv: 'cvv',
-            errorNumber: 'error-cardNumber',
-            errorOwner: 'error-owner',
-            errorCvv: 'error-cvv',
-            submit: 'confirm-purchase',
-            
+            errorNumber: 'number-error',
+            errorOwner: 'name-error',
+            errorCvv: 'cvv-error',
+            submit: 'submit',   
         };
 
         this.errorMessages = {

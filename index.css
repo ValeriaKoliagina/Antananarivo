@@ -1,0 +1,86 @@
+#app {
+  max-width: 500px;
+  background-color: #fff;
+  margin: 10px auto;
+  overflow: hidden;
+  padding: 25px;
+  color: #4c4e56;
+}
+
+#app form {
+  font-size: 18px;
+  padding: 10px 25px;
+  margin-top: 20px;
+  position: relative;
+}
+
+#app form label {
+  width: 100%;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+#app form div {
+  margin-bottom: 5px;
+}
+
+#app form .form-input {
+  line-height: 30px;
+  height: auto;
+  padding: 0 16px;
+  border-radius: 5px;
+}
+
+#app .name {
+  width: 63%;
+  margin-right: 10px;
+}
+
+#app .CVV {
+  width: 35%;
+}
+
+#app .form-number {
+  width: 100%;
+}
+
+#app .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+#app .form-group .form-selects {
+  display: flex;
+}
+
+#app .form-button {
+  width: 100%;
+  margin-top: 25px;
+}
+
+#app .form-button button {
+  width: 100%;
+  margin-top: 3px;
+  font-size: 24px;
+  background-color: #2ec4a5;
+  color: white;
+  border-radius: 5px;
+}
+
+#app select {
+  padding: 10px;
+  margin-right: 15px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+#app .input-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+#app .error {
+  color: red;
+  height: 14px;
+  font-size: 14px;
+}
