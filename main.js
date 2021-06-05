@@ -1,10 +1,31 @@
 class CardWidget {
     template = '';
     style = '';
+    formIDs = {};
+    errorMessages = {};
 
     constructor(selector) {
         this.template = '';
         this.style = '';
+
+        this.formIDs = {
+            form: 'cardForm',
+            number: 'cardNumber',
+            owner: 'owner',
+            cvv: 'cvv',
+            errorNumber: 'error-cardNumber',
+            errorOwner: 'error-owner',
+            errorCvv: 'error-cvv',
+            submit: 'confirm-purchase',
+            
+        };
+
+        this.errorMessages = {
+            errorNumber: 'Incorrect card number',
+            errorOwner: 'Incorrect holder\'s name',
+            errorCvv: 'Incorrect CVV number'
+            
+        };
 
         let element = document.querySelector(selector);
         if (element) {
@@ -64,6 +85,55 @@ class CardWidget {
             return false;
         }
 
+    }
+
+    showError(selector, message) {
+        let element = document.querySelector(selector);
+        if (element) {
+            element.textContent = message;
+        } else {
+            throw new Error('There is no such element in document');
+        }
+    }
+
+    validateAll() {
+        const cardNumber = document.querySelector(this.formIDs.cardNumber);
+        if(cardNumber) {
+            if(!this.validateCardNumber(cardNumber.value)) {
+                this.showError(this.formIDs.errorNumber, this.errorMessages.errorNumber);
+                return false;
+            } 
+        }
+
+        const owner = document.querySelector(this.formIDs.owner);
+        if(owner) {
+            if(!this.validateCardNumber(owner.value)) {
+                this.showError(this.formIDs.errorOwner, this.errorMessages.errorOwner);
+                return false;
+            } 
+        }
+
+        const cvv = document.querySelector(this.formIDs.cvv);
+        if(cvv) {
+            if(!this.validateCardNumber(cvv.value)) {
+                this.showError(this.formIDs.errorCvv, this.errorMessages.errorCvv);
+                return false;
+            } 
+        }
+
+        return true;
+    }
+
+    addEvents() {
+        const submit = document.querySelector(this.formIDs.submit);
+        if(submit) {
+            submit.addEventListener('submit', (ev) => {
+                ev.preventDefault();
+                if(this.validateAll()) {
+                    ev.target.submit();
+                }
+            });
+        }
     }
 
 }
